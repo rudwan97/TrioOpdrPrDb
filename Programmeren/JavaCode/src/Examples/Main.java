@@ -1,10 +1,6 @@
 package Examples;
 
-import com.company.SqlConnection;
-
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
+import Connection.SqlConnection;
 
 public class Main {
 

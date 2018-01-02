@@ -1,7 +1,6 @@
 package Examples;
 
-import Examples.Student;
-import com.company.SqlConnection;
+import Connection.SqlConnection;
 
 import java.sql.*;
 import java.util.*;
