@@ -1,0 +1,156 @@
+DROP DATABASE IF EXISTS NetflixStatistix;
+
+CREATE DATABASE NetflixStatistix;
+
+GO
+USE [NetflixStatistix]
+GO
+/****** Object:  Table [dbo].[Account]    Script Date: 2-1-2018 12:51:46 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Account](
+	[Abbonneenummer] [varchar](50) NOT NULL,
+	[Naam] [varchar](max) NOT NULL,
+	[Straat] [varchar](max) NOT NULL,
+	[Postcode] [varchar](max) NOT NULL,
+	[Huisnummer] [varchar](max) NOT NULL,
+	[Plaats] [varchar](max) NOT NULL,
+ CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED 
+(
+	[Abbonneenummer] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Aflevering]    Script Date: 2-1-2018 12:51:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Aflevering](
+	[ID] [varchar](50) NOT NULL,
+	[Serie] [varchar](50) NULL,
+	[Seizoen] [varchar](50) NULL,
+	[Titel] [varchar](50) NULL,
+	[Tijdsduur] [varchar](50) NULL,
+ CONSTRAINT [PK_Aflevering] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Bekeken]    Script Date: 2-1-2018 12:51:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Bekeken](
+	[Abbonnenummer] [varchar](50) NOT NULL,
+	[Profielnaam] [varchar](50) NOT NULL,
+	[Gezien] [varchar](50) NOT NULL,
+	[Percentage] [varchar](50) NULL,
+ CONSTRAINT [PK_Profiel] PRIMARY KEY CLUSTERED 
+(
+	[Abbonnenummer] ASC,
+	[Profielnaam] ASC,
+	[Gezien] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Film]    Script Date: 2-1-2018 12:51:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Film](
+	[ID] [varchar](50) NOT NULL,
+	[Titel] [varchar](50) NULL,
+	[Leeftijdsindicatie] [varchar](50) NULL,
+	[Taal] [varchar](50) NULL,
+	[Tijdsduur] [varchar](50) NULL,
+	[Genre] [varchar](50) NULL,
+ CONSTRAINT [PK_Film] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Profiel]    Script Date: 2-1-2018 12:51:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Profiel](
+	[Abbonneenummer] [varchar](50) NOT NULL,
+	[Profielnaam] [varchar](50) NOT NULL,
+	[Geboortedatum] [date] NULL,
+ CONSTRAINT [PK_Abbonnement] PRIMARY KEY CLUSTERED 
+(
+	[Abbonneenummer] ASC,
+	[Profielnaam] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Programma]    Script Date: 2-1-2018 12:51:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Programma](
+	[ID] [varchar](50) NOT NULL,
+	[Titel] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Programma_1] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Serie]    Script Date: 2-1-2018 12:51:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Serie](
+	[SerieNaam] [varchar](50) NOT NULL,
+	[Seizoen] [varchar](50) NULL,
+	[Leeftijd] [varchar](50) NULL,
+	[Taal] [varchar](50) NULL,
+	[Genre] [varchar](50) NULL,
+	[LijktEenBeetjeOp] [varchar](50) NULL,
+ CONSTRAINT [PK_Serie] PRIMARY KEY CLUSTERED 
+(
+	[SerieNaam] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Aflevering]  WITH CHECK ADD  CONSTRAINT [FK_Aflevering_Programma] FOREIGN KEY([ID])
+REFERENCES [dbo].[Programma] ([ID])
+GO
+ALTER TABLE [dbo].[Aflevering] CHECK CONSTRAINT [FK_Aflevering_Programma]
+GO
+ALTER TABLE [dbo].[Aflevering]  WITH CHECK ADD  CONSTRAINT [FK_Aflevering_Serie1] FOREIGN KEY([Serie])
+REFERENCES [dbo].[Serie] ([SerieNaam])
+GO
+ALTER TABLE [dbo].[Aflevering] CHECK CONSTRAINT [FK_Aflevering_Serie1]
+GO
+ALTER TABLE [dbo].[Bekeken]  WITH CHECK ADD  CONSTRAINT [FK_Bekeken_Profiel] FOREIGN KEY([Abbonnenummer], [Profielnaam])
+REFERENCES [dbo].[Profiel] ([Abbonneenummer], [Profielnaam])
+GO
+ALTER TABLE [dbo].[Bekeken] CHECK CONSTRAINT [FK_Bekeken_Profiel]
+GO
+ALTER TABLE [dbo].[Bekeken]  WITH CHECK ADD  CONSTRAINT [FK_Bekeken_Programma] FOREIGN KEY([Gezien])
+REFERENCES [dbo].[Programma] ([ID])
+GO
+ALTER TABLE [dbo].[Bekeken] CHECK CONSTRAINT [FK_Bekeken_Programma]
+GO
+ALTER TABLE [dbo].[Film]  WITH CHECK ADD  CONSTRAINT [FK_Film_Programma] FOREIGN KEY([ID])
+REFERENCES [dbo].[Programma] ([ID])
+GO
+ALTER TABLE [dbo].[Film] CHECK CONSTRAINT [FK_Film_Programma]
+GO
+ALTER TABLE [dbo].[Profiel]  WITH CHECK ADD  CONSTRAINT [FK_Abbonnement_Account] FOREIGN KEY([Abbonneenummer])
+REFERENCES [dbo].[Account] ([Abbonneenummer])
+GO
+ALTER TABLE [dbo].[Profiel] CHECK CONSTRAINT [FK_Abbonnement_Account]
+GO
