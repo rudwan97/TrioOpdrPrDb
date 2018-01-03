@@ -48,11 +48,10 @@ public class Bekeken {
 
     @Override
     public String toString() {
-        return "Bekeken{" +
-                "subscriptionNumber='" + subscriptionNumber + '\'' +
-                ", profileName='" + profileName + '\'' +
-                ", watched='" + watched + '\'' +
-                ", percentageSeen='" + percentageSeen + '\'' +
-                '}';
+        return "Bekeken " +
+                "subscriptionNumber=" + subscriptionNumber +
+                " profileName=" + profileName +
+                " watched=" + watched +
+                " percentageSeen=" + percentageSeen + "\n";
     }
 }

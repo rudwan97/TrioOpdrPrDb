@@ -31,7 +31,7 @@ public class ProfielRepository {
     public Profiel read(String subscriptionNumber) {
         Profiel profiel = null;
         try {
-            String sqlQuery = "SELECT * FROM ACCOUNT WHERE Abbonneenummer=" + subscriptionNumber;
+            String sqlQuery = "SELECT * FROM PROFIEL WHERE Abbonneenummer=" + subscriptionNumber;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
             profiel = new Profiel(rs.getString("Abbonneenummer"), rs.getString("Profielnaam"), rs.getString("Geboortedatum"));
@@ -52,6 +52,8 @@ public class ProfielRepository {
         }
         return false;
     }
+
+
 
 
 

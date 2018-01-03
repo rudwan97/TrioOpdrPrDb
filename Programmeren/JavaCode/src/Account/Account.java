@@ -69,6 +69,12 @@ public class Account {
 
     @Override
     public String toString() {
-        return this.name + " " + this.subscriptionNumber;
+        return "Account" +
+                "subscriptionNumber='" + subscriptionNumber +
+                ", name='" + name +
+                ", street='" + street +
+                ", zipcode='" + zipcode +
+                ", houseNumber='" + houseNumber +
+                ", city='" + city + "\n";
     }
 }

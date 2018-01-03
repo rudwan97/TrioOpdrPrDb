@@ -53,5 +53,22 @@ public class AccountRepository {
         return false;
     }
 
+    public ArrayList<Account> accountsWithOneProfile(){
+        ArrayList<Account> lijst = new ArrayList<>();
+        Account account = null;
+        String accountNaam = "";
+        try {
+            ResultSet rs = sqlConnection.executeSql("SELECT COUNT (Profiel.Abbonneenummer) as Aantal, Profiel.Abbonneenummer FROM Profiel JOIN Account on Account.Abbonneenummer = Profiel.Abbonneenummer GROUP BY Profiel.Abbonneenummer HAVING COUNT(Profiel.Abbonneenummer) = 2");
+            while(rs.next()) {
+                accountNaam = rs.getString("Abbonneenummer");
+                lijst.add(read(accountNaam));
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return lijst;
+    }
+
 
 }

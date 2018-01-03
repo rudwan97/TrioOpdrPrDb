@@ -42,10 +42,9 @@ public class Profiel{
 
     @Override
     public String toString() {
-        return "Profiel{" +
-                "subscriptionNumber='" + subscriptionNumber + '\'' +
-                ", profileName='" + profileName + '\'' +
-                ", birthDate='" + birthDate + '\'' +
-                '}';
+        return "Profiel" +
+                " subscriptionNumber='" + subscriptionNumber +
+                ", profileName='" + profileName +
+                ", birthDate='" + birthDate + "\n";
     }
 }
