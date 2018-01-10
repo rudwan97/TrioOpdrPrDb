@@ -2,9 +2,11 @@ package Profiel;
 
 import Account.Account;
 import Connection.SqlConnection;
+import Film.Film;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfielRepository {
 
@@ -53,8 +55,31 @@ public class ProfielRepository {
         return false;
     }
 
+    public List<Profiel> profilesThatWatchedWholeChosenFilm(String filmTitel){
+        List<Profiel> profiles = new ArrayList<Profiel>();
+        try {
+            ResultSet rs = sqlConnection.executeSql("Select Profiel.Profielnaam, Profiel.*, Film.Titel, Bekeken.Percentage\n" +
+                    "From profiel\n" +
+                    "JOIN Bekeken on Profiel.Profielnaam = Bekeken.Profielnaam\n" +
+                    "JOIN FILM on Bekeken.Gezien = Film.ID\n" +
+                    "WHERE Bekeken.Percentage = '100' AND Film.Titel = " + "'" + filmTitel + "'");
+            while(rs.next()) {
+                profiles.add(new Profiel(rs.getString("Abbonneenummer"),
+                        rs.getString("Profielnaam"),
+                        rs.getString("Geboortedatum")));
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return profiles;
+    }
+
+
+    }
 
 
 
 
-}
+
+

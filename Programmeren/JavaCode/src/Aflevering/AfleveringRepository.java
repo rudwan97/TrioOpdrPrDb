@@ -20,7 +20,11 @@ public class AfleveringRepository {
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM AFLEVERING");
             while(rs.next()) {
-                lijst.add(new Aflevering(rs.getString("ID"),rs.getString("Serie"), rs.getString("Seizoen"), rs.getString("Titel"), rs.getString("Tijdsduur")));
+                lijst.add(new Aflevering(rs.getString("ID"),
+                        rs.getString("Serie"),
+                        rs.getString("Seizoen"),
+                        rs.getString("Titel"),
+                        rs.getString("Tijdsduur")));
             }
         }
         catch(Exception e) {
@@ -36,7 +40,11 @@ public class AfleveringRepository {
             String sqlQuery = "SELECT * FROM AFLEVERING WHERE ID=" + id;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
-            aflevering = new Aflevering(rs.getString("ID"),rs.getString("Serie"), rs.getString("Seizoen"), rs.getString("Titel"), rs.getString("Tijdsduur"));
+            aflevering = new Aflevering(rs.getString("ID"),
+                    rs.getString("Serie"),
+                    rs.getString("Seizoen"),
+                    rs.getString("Titel"),
+                    rs.getString("Tijdsduur"));
         }
         catch(Exception e) {
             System.out.println(e);

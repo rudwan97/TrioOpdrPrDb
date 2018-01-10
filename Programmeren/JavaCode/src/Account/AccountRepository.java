@@ -17,7 +17,12 @@ public class AccountRepository {
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM ACCOUNT");
             while(rs.next()) {
-                lijst.add(new Account(rs.getString("Abbonneenummer"), rs.getString("Naam"), rs.getString("Straat"), rs.getString("Postcode"), rs.getString("Huisnummer"), rs.getString("Plaats")));
+                lijst.add(new Account(rs.getString("Abbonneenummer"),
+                        rs.getString("Naam"),
+                        rs.getString("Straat"),
+                        rs.getString("Postcode"),
+                        rs.getString("Huisnummer"),
+                        rs.getString("Plaats")));
             }
         }
         catch(Exception e) {
@@ -33,7 +38,12 @@ public class AccountRepository {
             String sqlQuery = "SELECT * FROM ACCOUNT WHERE Abbonneenummer=" + subscriptionNumber;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
-            account = new Account(rs.getString("Abbonneenummer"), rs.getString("Naam"), rs.getString("Straat"), rs.getString("Postcode"), rs.getString("Huisnummer"), rs.getString("Plaats"));
+            account = new Account(rs.getString("Abbonneenummer"),
+                    rs.getString("Naam"),
+                    rs.getString("Straat"),
+                    rs.getString("Postcode"),
+                    rs.getString("Huisnummer"),
+                    rs.getString("Plaats"));
         }
         catch(Exception e) {
             System.out.println(e);
@@ -44,7 +54,12 @@ public class AccountRepository {
     public boolean create(Account account) {
         try
         {
-            String sqlQuery = "INSERT INTO STUDENTS VALUES (" + account.getSubscriptionNumber() + ", '" + account.getName() + ", '" + account.getStreet() + ", '" + account.getZipcode() + ", '"+ account.getHouseNumber() + ", '"+ account.getCity() + ")";
+            String sqlQuery = "INSERT INTO STUDENTS VALUES (" + account.getSubscriptionNumber() + ", '"
+                    + account.getName() + ", '"
+                    + account.getStreet() + ", '"
+                    + account.getZipcode() + ", '"
+                    + account.getHouseNumber() + ", '"
+                    + account.getCity() + ")";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
@@ -58,7 +73,11 @@ public class AccountRepository {
         Account account = null;
         String accountNaam = "";
         try {
-            ResultSet rs = sqlConnection.executeSql("SELECT COUNT (Profiel.Abbonneenummer) as Aantal, Profiel.Abbonneenummer FROM Profiel JOIN Account on Account.Abbonneenummer = Profiel.Abbonneenummer GROUP BY Profiel.Abbonneenummer HAVING COUNT(Profiel.Abbonneenummer) = 2");
+            ResultSet rs = sqlConnection.executeSql("SELECT COUNT (Profiel.Abbonneenummer) as Aantal, Profiel.Abbonneenummer " +
+                    "FROM Profiel " +
+                    "JOIN Account on Account.Abbonneenummer = Profiel.Abbonneenummer " +
+                    "GROUP BY Profiel.Abbonneenummer " +
+                    "HAVING COUNT(Profiel.Abbonneenummer) = 2");
             while(rs.next()) {
                 accountNaam = rs.getString("Abbonneenummer");
                 lijst.add(read(accountNaam));

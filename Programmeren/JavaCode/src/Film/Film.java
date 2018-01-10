@@ -1,16 +1,18 @@
 package Film;
 
+import java.sql.Time;
+
 public class Film {
 
-    private String id;
+    private String ID;
     private String title;
     private String recommendedAge;
     private String lanugage;
-    private String duration;
+    private Time duration;
     private String filmType;
 
-    public Film(String id, String title, String recommendedAge, String lanugage, String duration, String filmType) {
-        this.id = id;
+    public Film(String ID, String title, String recommendedAge, String lanugage, Time duration, String filmType) {
+        this.ID = ID;
         this.title = title;
         this.recommendedAge = recommendedAge;
         this.lanugage = lanugage;
@@ -19,11 +21,11 @@ public class Film {
     }
 
     public String getId() {
-        return id;
+        return ID;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.ID = id;
     }
 
     public String getTitle() {
@@ -50,11 +52,11 @@ public class Film {
         this.lanugage = lanugage;
     }
 
-    public String getDuration() {
+    public Time getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(Time duration) {
         this.duration = duration;
     }
 
@@ -68,12 +70,14 @@ public class Film {
 
     @Override
     public String toString() {
-        return "Film{" +
-                "id='" + id +
-                ", title='" + title +
-                ", recommendedAge='" + recommendedAge +
-                ", lanugage='" + lanugage +
-                ", duration='" + duration +
-                ", filmType='" + filmType + "\n";
+
+        return  "\n"+ this.title + ", " + duration + ", " + filmType + "\n";
+//        return "Film{" +
+//                "id='" + ID +
+//                ", title='" + title +
+//                ", recommendedAge='" + recommendedAge +
+//                ", lanugage='" + lanugage +
+//                ", duration='" + duration +
+//                ", filmType='" + filmType + "\n";
     }
 }
