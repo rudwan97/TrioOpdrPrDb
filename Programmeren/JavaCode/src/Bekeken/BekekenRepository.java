@@ -3,6 +3,7 @@ package Bekeken;
 
 import Account.Account;
 import Connection.SqlConnection;
+import Profiel.Profiel;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -73,6 +74,37 @@ public class BekekenRepository {
             System.out.println(e);
         }
         return false;
+    }
+
+    //Met deze functie kan je een bekeken programma verwijderen.
+    public boolean delete(String subscriptionNumber) {
+        try
+        {
+            String sqlQuery = "DELETE Bekeken WHERE Abbonneenummer=" + subscriptionNumber;
+            return sqlConnection.executeSqlNoResult(sqlQuery);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    //Met deze functie kan je een bekeken programma update door het oude programma en het geupdate programma mee te geven.
+    public boolean update(Bekeken oldSeen, Bekeken newSeen){
+        try
+        {
+            String sqlQuery = "Update Bekeken SET Abbonneenummer = " + newSeen.getSubscriptionNumber() +
+                    "Profielnaam =" + newSeen.getProfileName()  +
+                    "Geboortedatum =" + newSeen.getWatched()  +
+                    "Percentage = " + newSeen.getPercentageSeen() +
+                    "WHERE Abbonneenummer=" + oldSeen.getSubscriptionNumber();
+            return sqlConnection.executeSqlNoResult(sqlQuery);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return false;
+
     }
 
     //Deze fucntie haalt het totaal aan bekeken films gebaseerd op een gekozen filmID

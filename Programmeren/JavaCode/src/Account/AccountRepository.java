@@ -62,7 +62,7 @@ public class AccountRepository {
     public boolean create(Account account) {
         try
         {
-            String sqlQuery = "INSERT INTO STUDENTS VALUES (" + account.getSubscriptionNumber() + ", '"
+            String sqlQuery = "INSERT INTO ACCOUNT VALUES (" + account.getSubscriptionNumber() + ", '"
                     + account.getName() + ", '"
                     + account.getStreet() + ", '"
                     + account.getZipcode() + ", '"
@@ -75,6 +75,41 @@ public class AccountRepository {
         }
         return false;
     }
+
+    //Met deze functie kan je een account verwijderen.
+    public boolean delete(String subscriptionNumber) {
+        try
+        {
+            String sqlQuery = "DELETE Account WHERE Abbonneenummer=" + subscriptionNumber;
+            return sqlConnection.executeSqlNoResult(sqlQuery);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    //Met deze functie kan je een account update door het oude account en het geupdate account mee te geven.
+    public boolean update(Account oldAccount, Account updatedAccount){
+        try
+        {
+            String sqlQuery = "Update Account SET Abbonneenummer = " + updatedAccount.getSubscriptionNumber() +
+                    "Naam =" + updatedAccount.getName()  +
+                    "Straat =" + updatedAccount.getStreet()  +
+                    "Abbonneenummer =" + updatedAccount.getZipcode()  +
+                    "Abbonneenummer =" + updatedAccount.getHouseNumber()  +
+                    "Abbonneenummer =" + updatedAccount.getCity()  +
+                    "WHERE Abbonneenummer=" + oldAccount.getSubscriptionNumber();
+            return sqlConnection.executeSqlNoResult(sqlQuery);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return false;
+
+    }
+
+
 
     //Deze functie geeft een List terug van account met maar 1 profiel.
     public List<Account> accountsWithOneProfile(){
