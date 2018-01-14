@@ -4,6 +4,7 @@ import java.sql.Time;
 
 public class Film {
 
+    //Film gegevens
     private String ID;
     private String title;
     private String recommendedAge;
@@ -20,6 +21,7 @@ public class Film {
         this.filmType = filmType;
     }
 
+    //Standaard getters en setters van film
     public String getId() {
         return ID;
     }
@@ -68,16 +70,11 @@ public class Film {
         this.filmType = filmType;
     }
 
+    //toString
     @Override
     public String toString() {
 
-        return  "\n"+ this.title + ", " + duration + ", " + filmType + "\n";
-//        return "Film{" +
-//                "id='" + ID +
-//                ", title='" + title +
-//                ", recommendedAge='" + recommendedAge +
-//                ", lanugage='" + lanugage +
-//                ", duration='" + duration +
-//                ", filmType='" + filmType + "\n";
+        return  "Titel : " +  this.title + ", Tijdsduur : " + duration + ", Genre : " + filmType + "\n";
+
     }
 }

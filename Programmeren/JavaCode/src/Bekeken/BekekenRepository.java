@@ -6,23 +6,28 @@ import Connection.SqlConnection;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
+//Alle repositories zijn bedoeld om gegevens op tehalen, te zoeken op een special gegeven en overzichten op te vragen voor de overzichten.
+//Sommige repositories hebben ook de CRUD functies (Create, update, delete)
 public class BekekenRepository {
 
     private SqlConnection sqlConnection;
 
+    //Maakt een BekekenRepository en verbind deze met de database dmv de sql connection.
     public BekekenRepository(SqlConnection sqlConnection) {
         this.sqlConnection = sqlConnection;
     }
 
+    //Met deze functie kan je een bekeken programma zoeken in de database op abbonneenummer.
     public Bekeken read(String id) {
-        Bekeken bekeken = null;
+        Bekeken seen = null;
         try
         {
             String sqlQuery = "SELECT * FROM BEKEKEN WHERE ABBONNENUMMER=" + id;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
-            bekeken = new Bekeken(rs.getString("Abbonnenummer"),
+            seen = new Bekeken(rs.getString("Abbonnenummer"),
                     rs.getString("Profielnaam"),
                     rs.getString("Gezien"),
                     rs.getString("Percentage"));
@@ -30,11 +35,12 @@ public class BekekenRepository {
         catch(Exception e) {
             System.out.println(e);
         }
-        return bekeken;
+        return seen;
     }
 
-    public ArrayList<Bekeken> readAll() {
-        ArrayList<Bekeken> lijst = new ArrayList<>();
+    //Haalt alle bekeken programma's uit de database op, en stopt deze in een List van Bekeken
+    public List<Bekeken> readAll() {
+        List<Bekeken> lijst = new ArrayList<>();
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM BEKEKEN");
             while(rs.next()) {
@@ -52,6 +58,7 @@ public class BekekenRepository {
         return lijst;
     }
 
+    //Deze functie kan een bekeken programma toevoegen aan de database
     public boolean create(Bekeken bekeken) {
         try
         {
@@ -68,9 +75,10 @@ public class BekekenRepository {
         return false;
     }
 
+    //Deze fucntie haalt het totaal aan bekeken films gebaseerd op een gekozen filmID
     public int totalWatchedFilms(String titelId){
         int amount = 0;
-        Bekeken bekeken = null;
+        Bekeken seen = null;
         try
         {
             String sqlQuery = "SELECT COUNT(Bekeken.Gezien) as Aantal " +

@@ -4,16 +4,21 @@ import Connection.SqlConnection;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
+//Alle repositories zijn bedoeld om gegevens op tehalen, te zoeken op een special gegeven en overzichten op te vragen voor de overzichten.
+//Sommige repositories hebben ook de CRUD functies (Create, update, delete)
 public class AccountRepository {
     private SqlConnection sqlConnection;
 
+    //Maakt een AccountRepository en verbind deze met de database dmv de sql connection.
     public AccountRepository(SqlConnection sqlConnection) {
         this.sqlConnection = sqlConnection;
     }
 
-    public ArrayList<Account> readAll() {
-        ArrayList<Account> lijst = new ArrayList<>();
+    //Haalt alle accounts uit de database op, en stopt deze in een List van accounts
+    public List<Account> readAll() {
+        List<Account> lijst = new ArrayList<>();
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM ACCOUNT");
             while(rs.next()) {
@@ -31,6 +36,7 @@ public class AccountRepository {
         return lijst;
     }
 
+    //Met deze functie kan je een account zoeken in de database op abbonneenummer.
     public Account read(String subscriptionNumber) {
         Account account = null;
         try
@@ -51,6 +57,8 @@ public class AccountRepository {
         return account;
     }
 
+
+    //Met deze functie kan je een account maken in de database.
     public boolean create(Account account) {
         try
         {
@@ -68,8 +76,9 @@ public class AccountRepository {
         return false;
     }
 
-    public ArrayList<Account> accountsWithOneProfile(){
-        ArrayList<Account> lijst = new ArrayList<>();
+    //Deze functie geeft een List terug van account met maar 1 profiel.
+    public List<Account> accountsWithOneProfile(){
+        List<Account> lijst = new ArrayList<>();
         Account account = null;
         String accountNaam = "";
         try {
@@ -77,7 +86,7 @@ public class AccountRepository {
                     "FROM Profiel " +
                     "JOIN Account on Account.Abbonneenummer = Profiel.Abbonneenummer " +
                     "GROUP BY Profiel.Abbonneenummer " +
-                    "HAVING COUNT(Profiel.Abbonneenummer) = 2");
+                    "HAVING COUNT(Profiel.Abbonneenummer) = 1");
             while(rs.next()) {
                 accountNaam = rs.getString("Abbonneenummer");
                 lijst.add(read(accountNaam));

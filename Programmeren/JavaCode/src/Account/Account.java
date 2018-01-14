@@ -2,6 +2,7 @@ package Account;
 
 public class Account {
 
+    //Account gegevens
     private String subscriptionNumber;
     private String name;
     private String street;
@@ -19,6 +20,7 @@ public class Account {
         this.city = city;
     }
 
+    //Standaard getters en setters
     public String getSubscriptionNumber() {
         return subscriptionNumber;
     }
@@ -67,8 +69,9 @@ public class Account {
         this.city = city;
     }
 
+    //toString
     @Override
     public String toString() {
-        return this.name + ", " + this.subscriptionNumber + ", " + this.city + "\n";
+        return "Account naam : " + this.name + ",  Abbonneenummer : " + this.subscriptionNumber + ", Woonplaats : " + this.city + "\n";
     }
 }

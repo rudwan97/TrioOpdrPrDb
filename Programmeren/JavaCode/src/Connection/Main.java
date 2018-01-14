@@ -1,6 +1,8 @@
 package Connection;
 
 import Account.AccountRepository;
+import Aflevering.Aflevering;
+import Aflevering.*;
 import Bekeken.BekekenRepository;
 import Film.FilmRepository;
 import GUI.UserInterface;
@@ -40,10 +42,14 @@ public class Main {
 //        System.out.println(filmRepository.filmUnder16WithLongestDuration());
 //        System.out.println(filmRepository.filmsSeenByChosenProfile());
 
+        AfleveringRepository afleveringRepository = new AfleveringRepository(connection);
+
 
 
         System.out.println(filmRepository.filmsFromChosenAccount("121436"));
         System.out.println(filmRepository.filmsFromChosenAccount("Frank"));
+        System.out.println(afleveringRepository.getEpisodesAndAvgSeenByChosenSerie("1"));
+        System.out.println(afleveringRepository.getEpisodesAndAvgSeenByProfileAndSerie("Sherlock", "Frank"));
 
 
         connection.disconnectDatabase();

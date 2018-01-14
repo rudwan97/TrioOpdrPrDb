@@ -2,6 +2,7 @@ package Bekeken;
 
 public class Bekeken {
 
+    //Gegevens van een bekeken kolom
     private String subscriptionNumber;
     private String profileName;
     private String watched;
@@ -14,6 +15,7 @@ public class Bekeken {
         this.percentageSeen = percentageSeen;
     }
 
+    //Standaard getters en setters
     public String getSubscriptionNumber() {
         return subscriptionNumber;
     }
@@ -46,6 +48,7 @@ public class Bekeken {
         this.percentageSeen = percentageSeen;
     }
 
+    //toString
     @Override
     public String toString() {
         return "Bekeken " +
