@@ -1,7 +1,6 @@
 package Film;
 
 import Connection.SqlConnection;
-import Examples.Student;
 
 
 import java.sql.ResultSet;
@@ -108,8 +107,6 @@ public class FilmRepository {
         } catch (Exception e) {
             System.out.println(e);
         }
-
-
         return film;
     }
 }

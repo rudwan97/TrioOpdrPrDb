@@ -2,7 +2,6 @@ package GUI;
 
 import Account.Account;
 import Account.AccountRepository;
-import Aflevering.*;
 import Connection.SqlConnection;
 import Film.Film;
 import Film.FilmRepository;
@@ -12,29 +11,14 @@ import Serie.Serie;
 import Serie.SerieRepository;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import static javax.swing.SwingConstants.CENTER;
 
 public class UserInterface implements Runnable {
 
     private JFrame frame;
-
-    String home = "Beginscherm";
-    String overzicht1 = "Overzicht1";
-    String overzicht2 = "Overzicht2";
-    String overzicht3 = "Overzicht3";
-    String overzicht4 = "Overzicht4";
-    String overzicht5 = "Overzicht5";
-    String overzicht6 = "Overzicht6";
-    String SqlDatabaseLink = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetlflixStatistix;integratedSecurity=true;";
+    private String SqlDatabaseLink = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetlflixStatistix;integratedSecurity=true;";
 
     @Override
     public void run() {
@@ -81,6 +65,14 @@ public class UserInterface implements Runnable {
         JPanel card7 = makeCard7();
         card7.setBackground(Color.DARK_GRAY);
 
+        String home = "Beginscherm";
+        String overzicht1 = "Overzicht1";
+        String overzicht2 = "Overzicht2";
+        String overzicht3 = "Overzicht3";
+        String overzicht4 = "Overzicht4";
+        String overzicht5 = "Overzicht5";
+        String overzicht6 = "Overzicht6";
+
         //Voegt de tabbladen toe aan de TabbedPane.
         tabbedPane.addTab(home, card1);
         tabbedPane.addTab(overzicht1, card2);
@@ -113,7 +105,7 @@ public class UserInterface implements Runnable {
     public JPanel makeCard1() {
         //Voegt het netflix logo toe aan het beginscherm
         JPanel card1 = new JPanel();
-        ImageIcon image = new ImageIcon("C:\\Users\\Kevin van Loon\\Downloads\\DatabaseRepositoryExample (1)\\Test\\src\\GUI\\betflix.png");
+        ImageIcon image = new ImageIcon("src\\GUI\\betflix.png");
         JLabel label = new JLabel(image);
         card1.add(label, BorderLayout.CENTER);
 
@@ -222,15 +214,17 @@ public class UserInterface implements Runnable {
         //Maakt een nieuwe film en filmrepository aan
         Film film = null;
         FilmRepository filmRepository = new FilmRepository(connection);
+
         //Film is nu de film met de langste tijdsduur en een leeftijdsindicatie van onder de 16 jaar
         film = filmRepository.filmUnder16WithLongestDuration();
 
         //Pagina header
         JLabel header = new JLabel("", SwingConstants.CENTER);
-        header.setText("<html>De film met de langste tijdsduur en onder 16 jaar is<br><br><br><br><br></html>");
+        header.setText("<html>De film met de langste tijdsduur en onder 16 jaar is<br><br></html>");
         header.setAlignmentX(Component.CENTER_ALIGNMENT);
         header.setAlignmentY(Component.CENTER_ALIGNMENT);
         header.setForeground(Color.WHITE);
+        header.setFont(new Font("TimesRoman", Font.PLAIN, 19));
 
         //Label waar het resultaat inkomt
         JLabel result = new JLabel();
@@ -244,7 +238,7 @@ public class UserInterface implements Runnable {
 
         //Als de filmm der untergang is dan wordt er een plaatje van het boek tegevoegd
         if (film.getTitle().equals("Der Untergang")){
-            ImageIcon image = new ImageIcon("C:\\Users\\Kevin van Loon\\Downloads\\DatabaseRepositoryExample (1)\\Test\\src\\GUI\\Undergang.jpg");
+            ImageIcon image = new ImageIcon("src\\GUI\\Undergang.jpg");
             JLabel label = new JLabel(image);
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
             label.setAlignmentY(Component.CENTER_ALIGNMENT);

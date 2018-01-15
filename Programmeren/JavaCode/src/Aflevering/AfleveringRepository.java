@@ -1,7 +1,6 @@
 package Aflevering;
 
 import Connection.SqlConnection;
-import Film.Film;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -106,6 +105,4 @@ public class AfleveringRepository {
         }
         return episodes;
     }
-
-
 }

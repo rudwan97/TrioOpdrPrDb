@@ -2,6 +2,7 @@ package Serie;
 
 public class Serie {
 
+    //Serie gegevens
     private String serieName;
     private String season;
     private String recommendedAge;
@@ -18,6 +19,7 @@ public class Serie {
         this.looksLike = looksLike;
     }
 
+    //Standaard getters en setters
     public String getSerieName() {
         return serieName;
     }
@@ -66,5 +68,16 @@ public class Serie {
         this.looksLike = looksLike;
     }
 
-
+    //toString
+    @Override
+    public String toString() {
+        return "Serie{" +
+                "serieName='" + serieName + '\'' +
+                ", season='" + season + '\'' +
+                ", recommendedAge='" + recommendedAge + '\'' +
+                ", language='" + language + '\'' +
+                ", serieType='" + serieType + '\'' +
+                ", looksLike='" + looksLike + '\'' +
+                '}';
+    }
 }

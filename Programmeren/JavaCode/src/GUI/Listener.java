@@ -1,6 +1,5 @@
 package GUI;
 
-import Account.AccountRepository;
 import Aflevering.*;
 import Connection.SqlConnection;
 import Film.Film;
@@ -21,9 +20,7 @@ public class Listener implements ActionListener {
     private JComboBox box;
     private JComboBox secondBox;
     private JTextArea area;
-    private JLabel secondLabel;
-    private JComboBox thirdBox;
-    String SqlDatabaseLink = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetlflixStatistix;integratedSecurity=true;";
+    private String SqlDatabaseLink = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetlflixStatistix;integratedSecurity=true;";
 
     public Listener(JComboBox box, JLabel field) {
         this.box = box;

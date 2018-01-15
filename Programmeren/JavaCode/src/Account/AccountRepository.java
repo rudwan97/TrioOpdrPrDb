@@ -41,7 +41,8 @@ public class AccountRepository {
         Account account = null;
         try
         {
-            String sqlQuery = "SELECT * FROM ACCOUNT WHERE Abbonneenummer=" + subscriptionNumber;
+            String sqlQuery = "SELECT * FROM ACCOUNT " +
+                    "WHERE Abbonneenummer=" + subscriptionNumber;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
             account = new Account(rs.getString("Abbonneenummer"),
@@ -80,7 +81,8 @@ public class AccountRepository {
     public boolean delete(String subscriptionNumber) {
         try
         {
-            String sqlQuery = "DELETE Account WHERE Abbonneenummer=" + subscriptionNumber;
+            String sqlQuery = "DELETE Account " +
+                    "WHERE Abbonneenummer=" + subscriptionNumber;
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
@@ -109,8 +111,6 @@ public class AccountRepository {
 
     }
 
-
-
     //Deze functie geeft een List terug van account met maar 1 profiel.
     public List<Account> accountsWithOneProfile(){
         List<Account> lijst = new ArrayList<>();
@@ -132,6 +132,4 @@ public class AccountRepository {
         }
         return lijst;
     }
-
-
 }

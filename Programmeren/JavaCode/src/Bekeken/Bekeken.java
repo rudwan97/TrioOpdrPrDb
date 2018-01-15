@@ -48,7 +48,7 @@ public class Bekeken {
         this.percentageSeen = percentageSeen;
     }
 
-    //toString
+    //toString- subs
     @Override
     public String toString() {
         return "Bekeken " +

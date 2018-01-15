@@ -1,13 +1,19 @@
 package Profiel;
 
-import Account.Account;
-
 public class Profiel{
 
+    //Gegevens van een profiel
     private String subscriptionNumber;
     private String profileName;
     private String birthDate;
 
+    public Profiel(String subscriptionNumber, String profileName, String birthDate) {
+        this.subscriptionNumber = subscriptionNumber;
+        this.profileName = profileName;
+        this.birthDate = birthDate;
+    }
+
+    //Standaard getters en setters
     public String getProfileName() {
         return profileName;
     }
@@ -32,14 +38,7 @@ public class Profiel{
         this.subscriptionNumber = subscriptionNumber;
     }
 
-    public Profiel(String subscriptionNumber, String profileName, String birthDate) {
-
-
-        this.subscriptionNumber = subscriptionNumber;
-        this.profileName = profileName;
-        this.birthDate = birthDate;
-    }
-
+    //toString
     @Override
     public String toString() {
         return "Profielnaam : " + this.profileName + ", Abbonneenummer : " + this.subscriptionNumber + ", Geboortedatum : " + this.birthDate;

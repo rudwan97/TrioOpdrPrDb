@@ -3,9 +3,6 @@ package Film;
 import Connection.SqlConnection;
 import org.junit.Assert;
 import org.junit.Test;
-import Film.*;
-
-import static org.junit.Assert.*;
 
 public class FilmRepositoryTest {
 

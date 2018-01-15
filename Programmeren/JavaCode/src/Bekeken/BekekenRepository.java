@@ -1,9 +1,7 @@
 package Bekeken;
 
 
-import Account.Account;
 import Connection.SqlConnection;
-import Profiel.Profiel;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -51,7 +49,6 @@ public class BekekenRepository {
                         rs.getString("Percentage")));
             }
         }
-
         catch(Exception e) {
             System.out.println(e);
         }
@@ -60,14 +57,14 @@ public class BekekenRepository {
     }
 
     //Deze functie kan een bekeken programma toevoegen aan de database
-    public boolean create(Bekeken bekeken) {
+    public boolean create(Bekeken seen) {
         try
         {
             String sqlQuery = "INSERT INTO BEKEKEN VALUES ("
-                    + bekeken.getSubscriptionNumber()
-                    + ", '" + bekeken.getProfileName()
-                    + ", '" + bekeken.getPercentageSeen()
-                    + ", '" + bekeken.getWatched() + ")";
+                    + seen.getSubscriptionNumber()
+                    + ", '" + seen.getProfileName()
+                    + ", '" + seen.getPercentageSeen()
+                    + ", '" + seen.getWatched() + ")";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
